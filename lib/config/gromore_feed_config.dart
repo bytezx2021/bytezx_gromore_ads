@@ -1,4 +1,4 @@
-import 'package:flutter_gromore/config/gromore_base_config.dart';
+import 'package:yj_gromore_sdk/config/gromore_base_config.dart';
 
 class GromoreFeedConfig extends GromoreBaseAdConfig {
   /// 广告id

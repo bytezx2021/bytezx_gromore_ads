@@ -3,16 +3,16 @@ import 'dart:io';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_gromore/callback/gromore_base_callback.dart';
-import 'package:flutter_gromore/callback/gromore_interstitial_callback.dart';
-import 'package:flutter_gromore/callback/gromore_method_channel_handler.dart';
-import 'package:flutter_gromore/callback/gromore_reward_callback.dart';
-import 'package:flutter_gromore/callback/gromore_splash_callback.dart';
-import 'package:flutter_gromore/config/gromore_feed_config.dart';
-import 'package:flutter_gromore/config/gromore_interstitial_config.dart';
-import 'package:flutter_gromore/config/gromore_reward_config.dart';
-import 'package:flutter_gromore/config/gromore_splash_config.dart';
-import 'package:flutter_gromore/constants/gromore_constans.dart';
+import 'package:yj_gromore_sdk/callback/gromore_base_callback.dart';
+import 'package:yj_gromore_sdk/callback/gromore_interstitial_callback.dart';
+import 'package:yj_gromore_sdk/callback/gromore_method_channel_handler.dart';
+import 'package:yj_gromore_sdk/callback/gromore_reward_callback.dart';
+import 'package:yj_gromore_sdk/callback/gromore_splash_callback.dart';
+import 'package:yj_gromore_sdk/config/gromore_feed_config.dart';
+import 'package:yj_gromore_sdk/config/gromore_interstitial_config.dart';
+import 'package:yj_gromore_sdk/config/gromore_reward_config.dart';
+import 'package:yj_gromore_sdk/config/gromore_splash_config.dart';
+import 'package:yj_gromore_sdk/constants/gromore_constans.dart';
 
 class FlutterGromore {
   /// channel

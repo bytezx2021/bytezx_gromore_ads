@@ -5,11 +5,11 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_gromore/callback/gromore_banner_callback.dart';
-import 'package:flutter_gromore/callback/gromore_method_channel_handler.dart';
-import 'package:flutter_gromore/constants/gromore_constans.dart';
+import 'package:yj_gromore_sdk/callback/gromore_banner_callback.dart';
+import 'package:yj_gromore_sdk/callback/gromore_method_channel_handler.dart';
+import 'package:yj_gromore_sdk/constants/gromore_constans.dart';
 
-import 'package:flutter_gromore/flutter_gromore.dart';
+import 'package:yj_gromore_sdk/flutter_gromore.dart';
 import 'package:visibility_detector/visibility_detector.dart';
 
 /// 信息流广告组件

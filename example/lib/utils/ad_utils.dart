@@ -1,6 +1,6 @@
-import 'package:flutter_gromore/config/gromore_banner_config.dart';
-import 'package:flutter_gromore/config/gromore_feed_config.dart';
-import 'package:flutter_gromore/flutter_gromore.dart';
+import 'package:yj_gromore_sdk/config/gromore_banner_config.dart';
+import 'package:yj_gromore_sdk/config/gromore_feed_config.dart';
+import 'package:yj_gromore_sdk/flutter_gromore.dart';
 import 'package:flutter_gromore_example/config/config.dart';
 
 /// 广告工具类

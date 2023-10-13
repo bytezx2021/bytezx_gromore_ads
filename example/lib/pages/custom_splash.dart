@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_gromore/callback/gromore_splash_callback.dart';
-import 'package:flutter_gromore/config/gromore_splash_config.dart';
-import 'package:flutter_gromore/view/gromore_splash_view.dart';
+import 'package:yj_gromore_sdk/callback/gromore_splash_callback.dart';
+import 'package:yj_gromore_sdk/config/gromore_splash_config.dart';
+import 'package:yj_gromore_sdk/view/gromore_splash_view.dart';
 import 'package:flutter_gromore_example/config/config.dart';
 
 class CustomSplash extends StatefulWidget {
