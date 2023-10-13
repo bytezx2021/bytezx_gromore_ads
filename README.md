@@ -1,7 +1,5 @@
 # Flutter版穿山甲Gromore广告插件
 
-如使用的1.x版本请参考[文档](https://github.com/50431040/flutter_gromore/blob/main/v1.x_README.md)
-
 ## 特点
 
 - 引入了最新的融合SDK（具体新特性请查看官方文档）
@@ -513,17 +511,6 @@ SizedBox(
 | onAdTerminate   | 进程被终止                    | 仅iOS可用 |
 | onLoadError     | 广告加载失败                  |           |
 
-## 问题
-
-1. iOS端的开屏广告只能使用`FlutterGromore.showSplashAd`进行，如果在此时同时加载插屏广告，可能会导致插屏广告出现在开屏广告上方
-
-使用`await`保证`FlutterGromore.showSplashAd`方法结束后再调用插屏广告的展示方法。
-
-2. 穿山甲信息流广告使用 `WebView` 实现，在 iOS 上存在触摸穿透的问题。插件中对穿山甲广告做了触摸事件拦截，可见 [FlutterGromoreIntercptPenetrateView.swift](https://github.com/50431040/flutter_gromore/blob/main/ios/Classes/view/FlutterGromoreIntercptPenetrateView.swift) ，有任何问题请提 [issue](https://github.com/50431040/flutter_gromore/issues)。
-
-   > Flutter 社区有相关讨论：[flutter#58659](https://github.com/flutter/flutter/issues/58659) 、[flutter#89956](https://github.com/flutter/flutter/issues/89956) 、[flutter#35784-comment](https://github.com/flutter/flutter/issues/35784#issuecomment-516243057) 等
-
-3. iOS 信息流广告卡顿掉帧问题。穿山甲广告 `WebView` 在每次滑入可视区域时都会申请展示广告，在列表滚动时有卡顿，已尝试优化；掉帧问题可跟踪社区：[flutter#107486](https://github.com/flutter/flutter/issues/107486) 、[flutter#103014-comment](https://github.com/flutter/flutter/issues/103014#issuecomment-1118341729)、[flutter#101776](https://github.com/flutter/flutter/issues/101776) 。
 
 4. 升级到2.x版本需要做些什么？
 
@@ -531,14 +518,7 @@ SizedBox(
 - 如果使用过已废弃的参数和回调则需要移除，一般不需要
 - 如需要使用聚合功能请在`initSDK`方法中传入`useMediation`参数
 
-其他问题请提[issue](https://github.com/50431040/flutter_gromore/issues)
 
 ## 团队
 
-> 牛小二招聘前端
-
-牛小二招聘是一款致力为国内物流蓝领提供靠谱的求职招聘服务平台，全网累计拥有数百万会员用户，每日实时更新司机、押运员、搬卸工、快递员招工及牛人信息，司机招聘与技术牛人涵盖挂车、叉车司机、客车司机、铲车司机、罐车司机、拖车司机及货运车司机等，求职者和雇主可挑选匹配沟通，提高人岗匹配率，降低沟通成本
-
-### 招聘
-
-正在持续招聘2年经验以上的前端工程师，base成都，感兴趣的话请把简历发送到邮箱：jianglinqi@niuxiaoer.net，备注下github。我们主要是做蓝领行业的招聘，产品包括牛小二招聘APP、牛小二招聘小程序等，总用户数超千万，DAU几十万~
+> 长沙元境网络科技有限公司
