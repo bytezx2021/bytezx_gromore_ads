@@ -1,6 +1,6 @@
 name: yj_gromore_sdk
 description: fork of flutter_gromore with some fixes.
-version: 1.0.1
+version: 1.0.2
 homepage: https://github.com/yjtec2023/flutter_gromore
 repository: https://github.com/yjtec2023/flutter_gromore
 documentation: https://github.com/yjtec2023/flutter_gromore/blob/main/README.md
