@@ -3,7 +3,7 @@
 # Run `pod lib lint flutter_gromore.podspec` to validate before publishing.
 #
 Pod::Spec.new do |s|
-  s.name             = 'flutter_gromore'
+  s.name             = 'yj_gromore_sdk'
   s.version          = '0.0.1'
   s.summary          = '穿山甲Gromore插件'
   s.description      = <<-DESC
