@@ -17,7 +17,7 @@ Pod::Spec.new do |s|
   s.dependency 'Flutter'
   s.platform = :ios, '8.0'
   
-  s.dependency 'Ads-Fusion-CN-Beta', '5.1.7.0'
+  s.dependency 'Ads-Fusion-CN-Beta', '5.6.0.9'
   s.subspec 'Ads-CSJ' do |cs|
     cs.dependency 'Ads-Fusion-CN-Beta/Ads-CSJ'
   end
