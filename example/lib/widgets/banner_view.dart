@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:yj_gromore_sdk/callback/gromore_banner_callback.dart';
-import 'package:yj_gromore_sdk/view/gromore_banner_view.dart';
+import 'package:flutter_gromore/callback/gromore_banner_callback.dart';
+import 'package:flutter_gromore/view/gromore_banner_view.dart';
 import 'package:flutter_gromore_example/config/config.dart';
 import 'package:flutter_gromore_example/utils/ad_utils.dart';
 

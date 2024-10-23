@@ -5,11 +5,11 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/rendering.dart';
-import 'package:yj_gromore_sdk/callback/gromore_method_channel_handler.dart';
-import 'package:yj_gromore_sdk/callback/gromore_splash_callback.dart';
-import 'package:yj_gromore_sdk/config/gromore_splash_config.dart';
-import 'package:yj_gromore_sdk/constants/gromore_constans.dart';
-import 'package:yj_gromore_sdk/flutter_gromore.dart';
+import 'package:flutter_gromore/callback/gromore_method_channel_handler.dart';
+import 'package:flutter_gromore/callback/gromore_splash_callback.dart';
+import 'package:flutter_gromore/config/gromore_splash_config.dart';
+import 'package:flutter_gromore/constants/gromore_constans.dart';
+import 'package:flutter_gromore/flutter_gromore.dart';
 
 /// 开屏广告组件（自定义布局渲染）
 class GromoreSplashView extends StatefulWidget {

@@ -7,7 +7,11 @@ import android.util.Log
 import io.flutter.plugin.common.BinaryMessenger
 import io.flutter.plugin.common.MethodCall
 import io.flutter.plugin.common.MethodChannel
-import net.niuxiaoer.flutter_gromore.manager.*
+import net.niuxiaoer.flutter_gromore.manager.FlutterGromoreFeedCache
+import net.niuxiaoer.flutter_gromore.manager.FlutterGromoreFeedManager
+import net.niuxiaoer.flutter_gromore.manager.FlutterGromoreInterstitialCache
+import net.niuxiaoer.flutter_gromore.manager.FlutterGromoreInterstitialManager
+import net.niuxiaoer.flutter_gromore.manager.FlutterGromoreRewardManager
 import net.niuxiaoer.flutter_gromore.utils.Utils
 import net.niuxiaoer.flutter_gromore.view.FlutterGromoreInterstitial
 import net.niuxiaoer.flutter_gromore.view.FlutterGromoreReward
@@ -33,7 +37,7 @@ class PluginDelegate(
             }
             // 初始化
             "initSDK" -> {
-                InitGromore(context).initSDK(arguments, result)
+                InitGromore(context).initAd(call, result)
             }
             // 开屏
             "showSplashAd" -> {
@@ -87,9 +91,7 @@ class PluginDelegate(
 
     // 开屏广告
     private fun showSplash(arguments: Map<String, Any?>?) {
-
         require(arguments != null)
-
         val intent = Intent(context, FlutterGromoreSplash::class.java).apply {
             putExtra("id", arguments["id"] as? String)
             putExtra("adUnitId", arguments["adUnitId"] as? String)
@@ -101,7 +103,6 @@ class PluginDelegate(
             putExtra("buttonType", arguments["buttonType"] as? Int)
             putExtra("downloadType", arguments["downloadType"] as? Int)
         }
-
         activity.apply {
             startActivity(intent)
             activity.overridePendingTransition(0, 0)

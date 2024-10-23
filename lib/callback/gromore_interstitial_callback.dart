@@ -1,5 +1,5 @@
-import 'package:yj_gromore_sdk/callback/gromore_base_callback.dart';
-import 'package:yj_gromore_sdk/types.dart';
+import 'package:flutter_gromore/callback/gromore_base_callback.dart';
+import 'package:flutter_gromore/types.dart';
 
 class GromoreInterstitialCallback extends GromoreBaseAdCallback {
   /// 广告展示

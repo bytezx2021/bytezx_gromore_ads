@@ -1,5 +1,5 @@
 import 'package:flutter/services.dart';
-import 'package:yj_gromore_sdk/callback/gromore_base_callback.dart';
+import 'package:flutter_gromore/callback/gromore_base_callback.dart';
 
 /// 处理Dart端接收到的广告事件
 /// T 继承自事件回调基类

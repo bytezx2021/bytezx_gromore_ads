@@ -1,4 +1,4 @@
-import 'package:yj_gromore_sdk/config/gromore_base_config.dart';
+import 'package:flutter_gromore/config/gromore_base_config.dart';
 
 /// 激励广告配置
 class GromoreRewardConfig extends GromoreBaseAdConfig {

@@ -1,5 +1,5 @@
-import 'package:yj_gromore_sdk/config/gromore_base_config.dart';
-import 'package:yj_gromore_sdk/utils/gromore_ad_size.dart';
+import 'package:flutter_gromore/config/gromore_base_config.dart';
+import 'package:flutter_gromore/utils/gromore_ad_size.dart';
 
 /// 插屏广告配置
 class GromoreInterstitialConfig extends GromoreBaseAdConfig {

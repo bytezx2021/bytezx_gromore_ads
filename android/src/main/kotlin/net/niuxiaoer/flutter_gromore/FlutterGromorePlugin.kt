@@ -10,7 +10,6 @@ import net.niuxiaoer.flutter_gromore.constants.FlutterGromoreConstants
 import net.niuxiaoer.flutter_gromore.event.AdEventHandler
 import net.niuxiaoer.flutter_gromore.factory.FlutterGromoreBannerFactory
 import net.niuxiaoer.flutter_gromore.factory.FlutterGromoreFeedFactory
-import net.niuxiaoer.flutter_gromore.factory.FlutterGromoreSplashFactory
 
 /** FlutterGromorePlugin */
 class FlutterGromorePlugin : FlutterPlugin, ActivityAware {
@@ -56,13 +55,6 @@ class FlutterGromorePlugin : FlutterPlugin, ActivityAware {
                 .registerViewFactory(
                         FlutterGromoreConstants.feedViewTypeId,
                         FlutterGromoreFeedFactory(binding.activity, binaryMessenger)
-                )
-
-        flutterPluginBinding
-                .platformViewRegistry
-                .registerViewFactory(
-                        FlutterGromoreConstants.splashTypeId,
-                        FlutterGromoreSplashFactory(binding.activity, binaryMessenger)
                 )
 
         flutterPluginBinding

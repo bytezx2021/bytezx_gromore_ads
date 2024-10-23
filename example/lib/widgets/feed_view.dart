@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:yj_gromore_sdk/callback/gromore_feed_callback.dart';
-import 'package:yj_gromore_sdk/flutter_gromore.dart';
-import 'package:yj_gromore_sdk/view/gromore_feed_view.dart';
+import 'package:flutter_gromore/callback/gromore_feed_callback.dart';
+import 'package:flutter_gromore/flutter_gromore.dart';
+import 'package:flutter_gromore/view/gromore_feed_view.dart';
 import 'package:flutter_gromore_example/utils/ad_utils.dart';
 
 class FeedView extends StatefulWidget {

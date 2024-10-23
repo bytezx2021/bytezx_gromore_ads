@@ -1,14 +1,14 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
-import 'package:yj_gromore_sdk/callback/gromore_interstitial_callback.dart';
-import 'package:yj_gromore_sdk/callback/gromore_reward_callback.dart';
-import 'package:yj_gromore_sdk/callback/gromore_splash_callback.dart';
-import 'package:yj_gromore_sdk/config/gromore_interstitial_config.dart';
-import 'package:yj_gromore_sdk/config/gromore_reward_config.dart';
-import 'package:yj_gromore_sdk/config/gromore_splash_config.dart';
-import 'package:yj_gromore_sdk/flutter_gromore.dart';
-import 'package:yj_gromore_sdk/utils/gromore_ad_size.dart';
+import 'package:flutter_gromore/callback/gromore_interstitial_callback.dart';
+import 'package:flutter_gromore/callback/gromore_reward_callback.dart';
+import 'package:flutter_gromore/callback/gromore_splash_callback.dart';
+import 'package:flutter_gromore/config/gromore_interstitial_config.dart';
+import 'package:flutter_gromore/config/gromore_reward_config.dart';
+import 'package:flutter_gromore/config/gromore_splash_config.dart';
+import 'package:flutter_gromore/flutter_gromore.dart';
+import 'package:flutter_gromore/utils/gromore_ad_size.dart';
 import 'package:flutter_gromore_example/config/config.dart';
 import 'package:flutter_gromore_example/pages/banner_demo.dart';
 import 'package:flutter_gromore_example/pages/feed_demo.dart';

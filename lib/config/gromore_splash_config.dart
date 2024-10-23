@@ -1,4 +1,4 @@
-import 'package:yj_gromore_sdk/config/gromore_base_config.dart';
+import 'package:flutter_gromore/config/gromore_base_config.dart';
 
 /// 开屏广告配置
 class GromoreSplashConfig extends GromoreBaseAdConfig {
