@@ -55,7 +55,7 @@ class FlutterGromoreSplash : AppCompatActivity(), TTAdNative.CSJSplashAdListener
 
         val muted = intent.getBooleanExtra("muted", true)
         val preload = intent.getBooleanExtra("preload", true)
-        val volume = intent.getFloatExtra("volume", 1f)
+        val volume = intent.getFloatExtra("volume", 0f)
         val isSplashShakeButton = intent.getBooleanExtra("splashShakeButton", true)
         val isBidNotify = intent.getBooleanExtra("bidNotify", false)
 
@@ -94,6 +94,7 @@ class FlutterGromoreSplash : AppCompatActivity(), TTAdNative.CSJSplashAdListener
         logoContainer = findViewById(R.id.splash_ad_logo)
         containerWidth = Utils.getScreenWidthInPx(this)
         containerHeight = Utils.getScreenHeightInPx(this)
+
         // logo显示
         handleLogo()
         // 初始化开屏广告
@@ -103,26 +104,26 @@ class FlutterGromoreSplash : AppCompatActivity(), TTAdNative.CSJSplashAdListener
     // logo的显示与否
     private fun handleLogo() {
         val logo = intent.getStringExtra("logo")
-
+        val fullScreen = intent.getBooleanExtra("fullScreen", false)
+        if(!fullScreen){
+            logoContainer.visibility = View.GONE
+        }
         val id = logo.takeIf {
             logo != null && logo.isNotEmpty()
         }?.let {
             getMipmapId(it)
         }
-
         if (id != null && id > 0) {
             // 找得到图片资源，设置
             logoContainer.apply {
                 visibility = View.VISIBLE
                 setImageResource(id)
             }
-
             containerHeight -= logoContainer.layoutParams.height
         } else {
             logoContainer.visibility = View.GONE
             Log.e(TAG, "Logo 名称不匹配或不在 mipmap 文件夹下，展示全屏")
         }
-
     }
 
     /**
@@ -166,7 +167,7 @@ class FlutterGromoreSplash : AppCompatActivity(), TTAdNative.CSJSplashAdListener
 
     override fun onSplashLoadSuccess(ad: CSJSplashAd?) {
         Log.d(TAG, "onSplashAdLoadSuccess")
-        sendEvent("onSplashAdLoadSuccess")
+        sendEvent("onLoadSuccess")
         if (ad != null) {
             splashAd = ad
             ad.setSplashAdListener(this)
@@ -184,16 +185,16 @@ class FlutterGromoreSplash : AppCompatActivity(), TTAdNative.CSJSplashAdListener
     }
 
     override fun onSplashLoadFail(p0: CSJAdError?) {
-        sendEvent("onSplashAdLoadFail")
+        sendEvent("onLoadFail")
         finishActivity()
     }
 
     override fun onSplashRenderSuccess(p0: CSJSplashAd?) {
-
+        sendEvent("onRenderSuccess")
     }
 
     override fun onSplashRenderFail(p0: CSJSplashAd?, p1: CSJAdError?) {
-        sendEvent("onSplashAdLoadFail")
+        sendEvent("onRenderFail")
         finishActivity()
     }
 
@@ -201,30 +202,25 @@ class FlutterGromoreSplash : AppCompatActivity(), TTAdNative.CSJSplashAdListener
     override fun onSplashAdShow(p0: CSJSplashAd?) {
         adShow = true
         closeAdTimer.cancel()
-
-        Log.d(TAG, "onAdShow")
         sendEvent("onAdShow")
-
         // 6s后自动跳过广告
         skipAdTimer.schedule(6000) {
             if (!isFinishing) {
                 runOnUiThread {
                     Log.d(TAG, "skipAdTimer exec")
-                    sendEvent("onAutoSkip")
+                    sendEvent("onAutoClose")
                     finishActivity()
                 }
             }
         }
-
     }
 
     override fun onSplashAdClick(p0: CSJSplashAd?) {
-        Log.d(TAG, "onAdClicked")
-        sendEvent("onAdClicked")
+        sendEvent("onClick")
     }
 
     override fun onSplashAdClose(p0: CSJSplashAd?, p1: Int) {
-        sendEvent("onAdDismiss")
+        sendEvent("onClose")
         finishActivity()
     }
 

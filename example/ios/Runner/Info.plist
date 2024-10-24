@@ -2,6 +2,9 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>CADisableMinimumFrameDurationOnPhone</key>
+	<true/>
+
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleExecutable</key>
@@ -29,6 +32,15 @@
 	</dict>
 	<key>NSUserTrackingUsageDescription</key>
 	<string>获取IDFA标记权限想您提供优质的个性化服务和内容</string>
+	<key>SKAdNetworkIdentifier</key>
+	<array>
+		<string>x2jnk7ly8j.skadnetwork</string>
+		<string>238da6jt44.skadnetwork</string>
+		<string>f7s53z58qe.skadnetwork</string>
+		<string></string>
+	</array>
+	<key>UIApplicationSupportsIndirectInputEvents</key>
+	<true/>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>
@@ -48,14 +60,5 @@
 	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
-	<key>SKAdNetworkIdentifier</key>
-	<array>
-		<string>x2jnk7ly8j.skadnetwork</string>
-		<string>238da6jt44.skadnetwork</string>
-		<string>f7s53z58qe.skadnetwork</string>
-		<string></string>
-	</array>
-	<key>CADisableMinimumFrameDurationOnPhone</key>
-	<true/>
 </dict>
 </plist>

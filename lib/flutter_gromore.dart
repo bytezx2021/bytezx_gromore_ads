@@ -9,6 +9,7 @@ import 'package:flutter_gromore/callback/gromore_method_channel_handler.dart';
 import 'package:flutter_gromore/callback/gromore_reward_callback.dart';
 import 'package:flutter_gromore/callback/gromore_splash_callback.dart';
 import 'package:flutter_gromore/config/gromore_feed_config.dart';
+import 'package:flutter_gromore/config/gromore_init_config.dart';
 import 'package:flutter_gromore/config/gromore_interstitial_config.dart';
 import 'package:flutter_gromore/config/gromore_reward_config.dart';
 import 'package:flutter_gromore/config/gromore_splash_config.dart';
@@ -16,10 +17,8 @@ import 'package:flutter_gromore/constants/gromore_constans.dart';
 
 class FlutterGromore {
   /// channel
-  static const MethodChannel _methodChannel =
-      MethodChannel(FlutterGromoreConstants.methodChannelName);
-  static const EventChannel _eventChannel =
-      EventChannel(FlutterGromoreConstants.eventChannelName);
+  static const MethodChannel _methodChannel = MethodChannel(FlutterGromoreConstants.methodChannelName);
+  static const EventChannel _eventChannel = EventChannel(FlutterGromoreConstants.eventChannelName);
 
   /// 事件中心，存储事件
   static final Map<String, GromoreBaseAdCallback> _eventCenter = {};
@@ -50,8 +49,7 @@ class FlutterGromore {
       if (id != null && id.isNotEmpty && _eventCenter[id] != null) {
         /// 开屏广告事件
         if (_eventCenter[id] is GromoreSplashCallback) {
-          GromoreSplashCallback callback =
-              (_eventCenter[id] as GromoreSplashCallback);
+          GromoreSplashCallback callback = (_eventCenter[id] as GromoreSplashCallback);
           callback.exec(event["name"]);
         }
       }
@@ -59,20 +57,9 @@ class FlutterGromore {
   }
 
   /// 初始化SDK
-  static Future<bool> initSDK(
-      {required String appId,
-      required String appName,
-      required bool debug,
-      bool? useMediation}) async {
-
+  static Future<bool> initSDK({required GromoreInitConfig config}) async {
     try {
-      await _methodChannel.invokeMethod("initSDK", {
-        "appId": appId,
-        "appName": appName,
-        "debug": debug,
-        "useMediation": useMediation ?? false
-      });
-      isInit = true;
+      isInit = await _methodChannel.invokeMethod("initSDK",config.toJson());
       _handleEventListener();
       return true;
     } catch (_) {
@@ -85,10 +72,8 @@ class FlutterGromore {
       {required GromoreSplashConfig config,
       required GromoreBaseAdCallback callback}) async {
     assert(isInit);
-
     config.generateId();
     _eventCenter[config.id!] = callback;
-
     await _methodChannel.invokeMethod("showSplashAd", config.toJson());
   }
 
@@ -96,7 +81,6 @@ class FlutterGromore {
   static Future<String> loadInterstitialAd(
       GromoreInterstitialConfig config) async {
     assert(isInit);
-
     try {
       String result = await _methodChannel.invokeMethod(
           "loadInterstitialAd", config.toJson());
@@ -111,7 +95,6 @@ class FlutterGromore {
       {required String interstitialId,
       GromoreInterstitialCallback? callback}) async {
     assert(isInit);
-
     if (callback != null) {
       GromoreMethodChannelHandler<GromoreInterstitialCallback>.register(
           "${FlutterGromoreConstants.interstitialTypeId}/$interstitialId",
@@ -133,7 +116,6 @@ class FlutterGromore {
   /// 加载信息流广告
   static Future<List<String>> loadFeedAd(GromoreFeedConfig config) async {
     assert(isInit);
-
     try {
       List result =
           await _methodChannel.invokeMethod("loadFeedAd", config.toJson());
@@ -170,7 +152,7 @@ class FlutterGromore {
   /// 若需验证是否有效发放奖励，请在GromoreRewardCallback中传入onRewardVerify回调
   static Future<bool> showRewardAd(
       {required String rewardId, GromoreRewardCallback? callback}) async {
-    assert(isInit);
+    // assert(isInit);
 
     assert(rewardId.isNotEmpty);
 

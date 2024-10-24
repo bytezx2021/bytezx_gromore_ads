@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_gromore/callback/gromore_interstitial_callback.dart';
 import 'package:flutter_gromore/callback/gromore_reward_callback.dart';
 import 'package:flutter_gromore/callback/gromore_splash_callback.dart';
+import 'package:flutter_gromore/config/gromore_init_config.dart';
 import 'package:flutter_gromore/config/gromore_interstitial_config.dart';
 import 'package:flutter_gromore/config/gromore_reward_config.dart';
 import 'package:flutter_gromore/config/gromore_splash_config.dart';
@@ -12,7 +13,6 @@ import 'package:flutter_gromore/utils/gromore_ad_size.dart';
 import 'package:flutter_gromore_example/config/config.dart';
 import 'package:flutter_gromore_example/pages/banner_demo.dart';
 import 'package:flutter_gromore_example/pages/feed_demo.dart';
-import 'package:flutter_gromore_example/pages/custom_splash.dart';
 import 'package:permission_handler/permission_handler.dart';
 
 void main() {
@@ -66,34 +66,27 @@ class _HomePageState extends State<HomePage> {
 
   /// 初始化SDK
   void initSDK() async {
-    bool result = await FlutterGromore.initSDK(
-        appId: GroMoreAdConfig.appId,
-        appName: APP_NAME,
-        debug: !IS_PRODUCTION,
-        useMediation: true);
-
-    if (result) {
-      // 加载插屏广告
-      loadInterstitialAd();
-    }
+    bool result = await FlutterGromore.initSDK(config: GromoreInitConfig(appId: GroMoreAdConfig.appId,useMediation: true,isCanUseWifiState: false));
+    print("initSDK:${result}");
+    // if (result) {
+    //   // 加载插屏广告
+    //   loadInterstitialAd();
+    // }
   }
 
   /// 展示开屏广告
   Future<void> showSplashAd() async {
     await FlutterGromore.showSplashAd(
         config: GromoreSplashConfig(
-            adUnitId: GroMoreAdConfig.splashId, logo: "launch_image"),
-        callback: GromoreSplashCallback(onAdShow: () {
-          print("callback --- onAdShow");
+            adUnitId: GroMoreAdConfig.splashId,fullScreen: false,  logo: "launch_image"),
+        callback: GromoreSplashCallback(
+          onClose: (){
+            print("GromoreSplashCallback --- onClose");
+          },
+            onAdEnd: () {
+              print("GromoreSplashCallback --- onAdEnd");
+
         }));
-
-    print("showSplashAd success");
-  }
-
-  /// 展示自定义布局开屏广告
-  void showSplashAdView() {
-    Navigator.push(
-        context, MaterialPageRoute(builder: (context) => const CustomSplash()));
   }
 
   /// 展示信息流广告
@@ -136,7 +129,6 @@ class _HomePageState extends State<HomePage> {
   Future<void> loadRewardAd() async {
     String rewardAdId = await FlutterGromore.loadRewardAd(
         GromoreRewardConfig(adUnitId: GroMoreAdConfig.rewardId));
-
     if (rewardAdId.isNotEmpty) {
       showRewardAd(rewardAdId);
     }

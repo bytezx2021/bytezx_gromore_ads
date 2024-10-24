@@ -15,15 +15,10 @@ Pod::Spec.new do |s|
   s.source           = { :path => '.' }
   s.source_files = 'Classes/**/*'
   s.dependency 'Flutter'
-  s.platform = :ios, '8.0'
-  
-  s.dependency 'Ads-Fusion-CN-Beta', '5.6.0.9'
-  s.subspec 'Ads-CSJ' do |cs|
-    cs.dependency 'Ads-Fusion-CN-Beta/Ads-CSJ'
-  end
-  s.subspec 'CSJMediation' do |cs|
-    cs.dependency 'Ads-Fusion-CN-Beta/CSJMediation'
-  end
+
+  s.dependency 'Ads-CN-Beta', '6.5.0.1'
+  s.platform = :ios, '12.0'
+
   s.static_framework = true
   # Flutter.framework does not contain a i386 slice.
   s.pod_target_xcconfig = { 'DEFINES_MODULE' => 'YES', 'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'i386' }

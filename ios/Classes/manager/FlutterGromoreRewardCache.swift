@@ -9,17 +9,18 @@ import Foundation
 import BUAdSDK
 
 class FlutterGromoreRewardCache: NSObject {
-    private static var ads: [String: BURewardedVideoAd] = [:]
     
-    static func addAd(key: String, ad: BURewardedVideoAd) {
-        ads[key] = ad
-    }
-    
-    static func removeAd(key: String) {
-        ads.removeValue(forKey: key)
-    }
-    
-    static func getAd(key: String) -> BURewardedVideoAd? {
-        return ads[key]
-    }
+     private static var ads: [String: BUNativeExpressRewardedVideoAd] = [:]
+
+     static func addAd(key: String, ad: BUNativeExpressRewardedVideoAd) {
+         ads[key] = ad
+     }
+
+     static func removeAd(key: String) {
+         ads.removeValue(forKey: key)
+     }
+
+     static func getAd(key: String) -> BUNativeExpressRewardedVideoAd? {
+         return ads[key]
+     }
 }

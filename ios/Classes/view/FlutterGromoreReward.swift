@@ -8,10 +8,10 @@
 import Foundation
 import BUAdSDK
 
-class FlutterGromoreReward: NSObject, FlutterGromoreBase, BURewardedVideoAdDelegate {
+class FlutterGromoreReward: NSObject,FlutterGromoreBase,BUMNativeExpressRewardedVideoAdDelegate {
     var methodChannel: FlutterMethodChannel?
     private var args: [String: Any]
-    private var rewardAd: BURewardedVideoAd?
+    private var rewardAd: BUNativeExpressRewardedVideoAd?
     private var result: FlutterResult
     private var rewardId: String = ""
     
@@ -23,6 +23,8 @@ class FlutterGromoreReward: NSObject, FlutterGromoreBase, BURewardedVideoAdDeleg
         rewardAd = FlutterGromoreRewardCache.getAd(key: rewardId)
         methodChannel = initMethodChannel(channelName: "\(FlutterGromoreContants.rewardTypeId)/\(rewardId)", messenger: messenger)
         initAd()
+        
+       
     }
     
     func initAd() {
@@ -37,35 +39,61 @@ class FlutterGromoreReward: NSObject, FlutterGromoreBase, BURewardedVideoAdDeleg
         rewardAd = nil
     }
     
-    func rewardedVideoAdDidVisible(_ rewardedVideoAd: BURewardedVideoAd) {
-        postMessage("onAdShow")
+    // 广告素材加载完成
+    func nativeExpressRewardedVideoAdDidDownLoadVideo(_ rewardedVideoAd: BUNativeExpressRewardedVideoAd) {
+
     }
-    
-    func rewardedVideoAdDidClick(_ rewardedVideoAd: BURewardedVideoAd) {
-        postMessage("onAdVideoBarClick")
+
+    // 广告展示失败
+    func nativeExpressRewardedVideoAdDidShowFailed(_ rewardedVideoAd: BUNativeExpressRewardedVideoAd, error: Error) {
+        
     }
-    
-    func rewardedVideoAdDidClose(_ rewardedVideoAd: BURewardedVideoAd) {
-        postMessage("onAdClose")
-        result(true)
-        destroyAd()
+
+    // 广告已经展示
+    func nativeExpressRewardedVideoAdDidVisible(_ rewardedVideoAd: BUNativeExpressRewardedVideoAd) {
+        /*
+        //  (注意: getShowEcpmInfo 需要在当前广告展示之后调用, 展示之前调用该方法会返回 nil)
+        let info = rewardedVideoAd.mediation?.getShowEcpmInfo()
+        print("ecpm:\(info?.ecpm ?? "None")")
+        print("platform:\(info?.adnName ?? "None")")
+        print("ritID:\(info?.slotID ?? "None")")
+        print("requestID:\(info?.requestID ?? "None")")
+        */
     }
-    
-    func rewardedVideoAdDidPlayFinish(_ rewardedVideoAd: BURewardedVideoAd, didFailWithError error: Error?) {
-        postMessage("onVideoComplete")
+
+    // 广告已经关闭
+    func nativeExpressRewardedVideoAdDidClose(_ rewardedVideoAd: BUNativeExpressRewardedVideoAd) {
+        
     }
-    
-    func rewardedVideoAdServerRewardDidFail(_ rewardedVideoAd: BURewardedVideoAd, error: Error) {
-        postMessage("onVideoError")
-        result(false)
-        destroyAd()
+
+    // 广告被点击
+    func nativeExpressRewardedVideoAdDidClick(_ rewardedVideoAd: BUNativeExpressRewardedVideoAd) {
+        
     }
-    
-    func rewardedVideoAdServerRewardDidSucceed(_ rewardedVideoAd: BURewardedVideoAd, verify: Bool) {
-        postMessage("onRewardVerify", arguments: ["verify": verify])
+
+    // 广告被点击跳过
+    func nativeExpressRewardedVideoAdDidClickSkip(_ rewardedVideoAd: BUNativeExpressRewardedVideoAd) {
+            
     }
-    
-    func rewardedVideoAdDidClickSkip(_ rewardedVideoAd: BURewardedVideoAd) {
-        postMessage("onSkippedVideo")
+
+    // 广告视频播放完成
+    func nativeExpressRewardedVideoAdDidPlayFinish(_ rewardedVideoAd: BUNativeExpressRewardedVideoAd, didFailWithError error: Error?) {
+        
     }
+
+    // 广告奖励下发
+    func nativeExpressRewardedVideoAdServerRewardDidSucceed(_ rewardedVideoAd: BUNativeExpressRewardedVideoAd, verify: Bool) {
+        if verify {
+            // 验证通过
+            // 从rewardedVideoAd.rewardedVideoModel读取奖励信息
+        } else {
+            // 未验证通过
+        }
+    }
+
+    // 广告奖励下发失败
+    func nativeExpressRewardedVideoAdServerRewardDidFail(_ rewardedVideoAd: BUNativeExpressRewardedVideoAd, error: Error?) {
+
+    }
+
 }

@@ -5,15 +5,10 @@ class GromoreSplashConfig extends GromoreBaseAdConfig {
   /// 广告id
   final String adUnitId;
 
-  /// 广告宽度（自定义渲染可用）
-  /// 将不再维护
-  final double? width;
+  /// true:全屏广告 false:底部为logo
+  final bool? fullScreen;
 
-  /// 广告高度（自定义渲染可用）
-  /// 将不再维护
-  final double? height;
-
-  /// 如果传入了logo则会在底部显示logo，logo放在android/app/src/main/res/mipmap下，值不需要文件后缀（非自定义渲染可用）
+  /// fullScreen=true 时必传 底部显示logo，logo放在android/app/src/main/res/mipmap下，值不需要文件后缀
   final String? logo;
 
   /// 静音，默认为true
@@ -31,10 +26,11 @@ class GromoreSplashConfig extends GromoreBaseAdConfig {
   /// bidding类型广告，竞价成功或者失败后是否通知对应的adn，默认为false
   final bool? isBidNotify;
 
+  //TODO  设置兜底广告
+
   GromoreSplashConfig({
     required this.adUnitId,
-    this.width,
-    this.height,
+    this.fullScreen,
     this.logo,
     this.muted,
     this.preload,
@@ -47,9 +43,8 @@ class GromoreSplashConfig extends GromoreBaseAdConfig {
   Map toJson() {
     Map result = {
       "id": id,
-      "width": width,
-      "height": height,
       "adUnitId": adUnitId,
+      "fullScreen":fullScreen,
       "logo": logo,
       "muted": muted,
       "preload": preload,

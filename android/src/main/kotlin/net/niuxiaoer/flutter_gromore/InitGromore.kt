@@ -12,8 +12,11 @@ import io.flutter.plugin.common.MethodChannel
 import net.niuxiaoer.flutter_gromore.utils.AppUtils
 
 class InitGromore(private val context: Context) {
+
     private val TAG: String = "InitGromore"
+
     private lateinit var initResult: MethodChannel.Result
+
     // 由于失败后会进行重试，可能会回调多次。这个flag标识是否调用
     private var resultCalled: Boolean = false
 
@@ -48,7 +51,7 @@ class InitGromore(private val context: Context) {
             context, buildConfig(
                 appId,
                 appName ?: "${AppUtils.getAppName(context = context)}_Android",
-                useMediation ?: false,
+                useMediation ?: true,
                 themeStatus ?: 0,
                 multiProcess ?: false,
                 isCanUseLocation ?: false,
@@ -57,7 +60,7 @@ class InitGromore(private val context: Context) {
                 isCanUseWriteExternal ?: false,
                 isCanUseAndroidId ?: false,
                 isLimitPersonalAds ?: false,
-                isProgrammaticRecommend ?: false,
+                isProgrammaticRecommend ?: true,
             )
         )
         TTAdSdk.start(object : TTAdSdk.Callback {
@@ -68,7 +71,6 @@ class InitGromore(private val context: Context) {
                 }
                 resultCalled = true
                 initResult.success(true)
-
             }
             override fun fail(code: Int, msg: String?) {
                 Log.e(TAG, "TTAdSdk init start Error code:$code msg:$msg")
@@ -77,6 +79,7 @@ class InitGromore(private val context: Context) {
                 }
                 resultCalled = true
                 initResult.error(code.toString(), msg,msg)
+//                result.error(code.toString(), msg,msg)
             }
         })
     }

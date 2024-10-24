@@ -40,6 +40,8 @@ class FlutterGromoreInterstitialManager: NSObject, BUNativeExpressFullscreenVide
     
     // 加载失败
     func nativeExpressFullscreenVideoAd(_ fullscreenVideoAd: BUNativeExpressFullscreenVideoAd, didFailWithError error: Error?) {
+        print("加载失败:")
+        print(error)
         result(FlutterError(code: "0", message: error?.localizedDescription ?? "", details: error?.localizedDescription ?? ""))
     }
     

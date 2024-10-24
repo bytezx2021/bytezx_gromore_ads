@@ -1,82 +1,113 @@
 import 'package:flutter_gromore/callback/gromore_base_callback.dart';
+import 'package:flutter_gromore/ext/GromoreVoidCallbackExt.dart';
 import 'package:flutter_gromore/types.dart';
 
 /// 开屏广告回调
 class GromoreSplashCallback extends GromoreBaseAdCallback {
-  /// 广告被点击
-  final GromoreVoidCallback? onAdClicked;
-
-  /// 展示成功
-  final GromoreVoidCallback? onAdShow;
-
-  /// 展示失败，仅Android可用
-  final GromoreVoidCallback? onAdShowFail;
-
-  /// 点击跳过，仅Android可用
-  final GromoreVoidCallback? onAdSkip;
-
-  /// 倒计时结束，仅Android可用
-  final GromoreVoidCallback? onAdDismiss;
+  /// 加载成功
+  final GromoreVoidCallback? onLoadSuccess;
 
   /// 加载失败
-  final GromoreVoidCallback? onSplashAdLoadFail;
+  final GromoreVoidCallback? onLoadFail;
 
-  /// 加载成功，此时会展示广告
-  final GromoreVoidCallback? onSplashAdLoadSuccess;
+  /// 广告渲染成功
+  final GromoreVoidCallback? onRenderSuccess;
 
-  /// 加载超时，仅Android可用
-  final GromoreVoidCallback? onAdLoadTimeout;
+  /// 广告渲染失败
+  final GromoreVoidCallback? onRenderFail;
 
-  /// 开屏广告结束，这个时候会销毁广告（点击跳过、倒计时结束或渲染错误等 理应隐藏广告 的情况都会触发此回调，建议统一在此回调处理路由跳转等逻辑）
-  final GromoreVoidCallback? onAdEnd;
+  /// 即将展示
+  final GromoreVoidCallback? onWillShow;
+
+  /// 广告开始展示
+  final GromoreVoidCallback? onShow;
+
+  /// 广告展示失败
+  final GromoreVoidCallback? onShowFailed;
+
+  /// 广告被关闭
+  final GromoreVoidCallback? onClose;
+
+  /// 广告被点击
+  final GromoreVoidCallback? onClick;
 
   /// 触发开屏广告自动关闭（由于存在异常场景，导致广告无法正常展示，但无相关回调）
   final GromoreVoidCallback? onAutoClose;
 
-  /// 触发开屏广告自动跳过（由于存在部分场景，导致广告无法跳过）
-  final GromoreVoidCallback? onAutoSkip;
+  /// 开屏广告结束，这个时候会销毁广告（点击跳过、倒计时结束或渲染错误等 理应隐藏广告 的情况都会触发此回调，建议统一在此回调处理路由跳转等逻辑）
+  final GromoreVoidCallback? onAdEnd;
 
-  GromoreSplashCallback(
-      {this.onAdClicked,
-      this.onAdShowFail,
-      this.onAdSkip,
-      this.onAdDismiss,
-      this.onSplashAdLoadFail,
-      this.onSplashAdLoadSuccess,
-      this.onAdLoadTimeout,
-      this.onAdEnd,
-      this.onAdShow,
-      this.onAutoClose,
-      this.onAutoSkip})
-      : super();
+  /// 广告控制器被关闭 （ios）
+  final GromoreVoidCallback? splashAdViewControllerDidClose;
+
+  /// 其他控制器被关闭 (ios)
+  final GromoreVoidCallback? splashDidCloseOtherController;
+
+  /// 视频播放完成 (ios)
+  final GromoreVoidCallback? splashVideoAdDidPlayFinish;
+
+  GromoreSplashCallback({
+    this.onLoadSuccess,
+    this.onLoadFail,
+    this.onRenderSuccess,
+    this.onRenderFail,
+    this.onWillShow,
+    this.onShow,
+    this.onShowFailed,
+    this.onClose,
+    this.onClick,
+    this.onAutoClose,
+    this.onAdEnd,
+    this.splashAdViewControllerDidClose,
+    this.splashDidCloseOtherController,
+    this.splashVideoAdDidPlayFinish,
+  }) : super();
 
   /// 执行回调
   @override
   void exec(String callbackName, [dynamic arguments]) {
-    if (callbackName == "onAdClicked" && onAdClicked != null) {
-      onAdClicked!();
-    } else if (callbackName == "onAdShow" && onAdShow != null) {
-      onAdShow!();
-    } else if (callbackName == "onAdShowFail" && onAdShowFail != null) {
-      onAdShowFail!();
-    } else if (callbackName == "onAdSkip" && onAdSkip != null) {
-      onAdSkip!();
-    } else if (callbackName == "onAdDismiss" && onAdDismiss != null) {
-      onAdDismiss!();
-    } else if (callbackName == "onSplashAdLoadFail" &&
-        onSplashAdLoadFail != null) {
-      onSplashAdLoadFail!();
-    } else if (callbackName == "onSplashAdLoadSuccess" &&
-        onSplashAdLoadSuccess != null) {
-      onSplashAdLoadSuccess!();
-    } else if (callbackName == "onAdLoadTimeout" && onAdLoadTimeout != null) {
-      onAdLoadTimeout!();
-    } else if (callbackName == "onAdEnd" && onAdEnd != null) {
-      onAdEnd!();
-    } else if (callbackName == "onAutoClose" && onAutoClose != null) {
-      onAutoClose!();
-    } else if (callbackName == "onAutoSkip" && onAutoSkip != null) {
-      onAutoSkip!();
+    switch (callbackName) {
+      case "onLoadSuccess":
+        onLoadSuccess.isNotNull();
+
+      case "onLoadFail":
+        onLoadFail.isNotNull();
+
+      case "onRenderSuccess":
+        onRenderSuccess.isNotNull();
+
+      case "onRenderFail":
+        onRenderFail.isNotNull();
+
+      case "onWillShow":
+        onWillShow.isNotNull();
+
+      case "onShow":
+        onShow.isNotNull();
+
+      case "onShowFailed":
+        onShowFailed.isNotNull();
+
+      case "onClose":
+        onClose.isNotNull();
+
+      case "onClick":
+        onClick.isNotNull();
+
+      case "onAutoClose":
+        onAutoClose.isNotNull();
+
+      case "onAdEnd":
+        onAdEnd.isNotNull();
+
+      case "splashAdViewControllerDidClose":
+        splashAdViewControllerDidClose.isNotNull();
+
+      case "splashDidCloseOtherController":
+        splashDidCloseOtherController.isNotNull();
+
+      case "splashVideoAdDidPlayFinish":
+        splashVideoAdDidPlayFinish.isNotNull();
     }
   }
 }
